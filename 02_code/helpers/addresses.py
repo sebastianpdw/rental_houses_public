@@ -2,10 +2,11 @@ import re
 
 from geopy.extra.rate_limiter import RateLimiter
 from geopy.geocoders import Nominatim
+from geopy.location import Location
 from loguru import logger as lg
 
 
-def remove_keywords(s: str):
+def remove_keywords(s: str) -> str:
     """
     Remove keywords from a string
 
@@ -25,7 +26,7 @@ def remove_keywords(s: str):
     return s
 
 
-def extract_zipcode(s: str):
+def extract_zipcode(s: str) -> str:
     """
     Extract a zipcode from a string
 
@@ -49,7 +50,7 @@ def extract_zipcode(s: str):
         return None
 
 
-def parse_address_str(s, geolocator=None):
+def parse_address_str(s, geolocator=None) -> Location:
     """
     Parse an address string to a geopy location object
 

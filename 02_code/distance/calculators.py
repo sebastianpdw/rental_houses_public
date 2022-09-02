@@ -29,7 +29,7 @@ def calculate_distance(geo1, geo2, method='geodesic') -> float:
     return method_func(geo1_gps, geo2_gps).kilometers
 
 
-def calculate_distance_addrs(addr1, addr2, method='geodesic', geolocator=None, cache_filepath=None):
+def calculate_distance_addrs(addr1, addr2, method='geodesic', geolocator=None, cache_filepath=None) -> float:
     """
     Calculates distances between two addresses using the geopy geolocator
 

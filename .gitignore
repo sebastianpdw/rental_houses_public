@@ -1,0 +1,9 @@
+.idea/*
+*.csv
+*.pyc
+*.xlsx
+*__pycache__*
+chrome-data/*
+*.pkl
+*.log
+/01_data/*

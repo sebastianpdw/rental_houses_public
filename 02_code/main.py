@@ -9,6 +9,19 @@ from scraper.scraper_core import JaapScraper, ParariusScraper
 
 def filter_data(df: pd.DataFrame, max_price: int = 1450, min_rooms: int = 3, min_size_m2: int = 60,
                 max_dist_to_station: int = 2) -> pd.DataFrame:
+    """
+    Filters the data based on some criteria (e.g. max_price, min_rooms etc)
+
+    Args:
+        df (pd.DataFrame): The dataframe to filter
+        max_price (int): The maximum price of the listing
+        min_rooms (int): The minimum number of rooms of the listing
+        min_size_m2 (int): The minimum size of the listing in m2
+        max_dist_to_station (int): The maximum distance to the nearest station in km
+
+    Returns:
+        pd.DataFrame: The filtered dataframe
+    """
     # Set columns
     df['price'] = pd.to_numeric(df['price'], errors='coerce')
     df['nr_rooms'] = pd.to_numeric(df['nr_rooms'], errors='coerce')
@@ -47,6 +60,15 @@ def final_cleaning(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def main(scrape_all=True, scrape_jaap=False, scrape_pararius=False, debug_mode=True):
+    """
+    Main function that runs the scraper and saves the data to a CSV file
+
+    Args:
+        scrape_all (bool): Whether to scrape all websites or not (overrides scrape_jaap and scrape_pararius)
+        scrape_jaap (bool): Whether to scrape Jaap.nl or
+        scrape_pararius (bool): Whether to scrape Pararius.nl or not
+        debug_mode (bool): Whether to run in debug mode or not
+    """
     if scrape_all:
         scrape_jaap = True
         scrape_pararius = True

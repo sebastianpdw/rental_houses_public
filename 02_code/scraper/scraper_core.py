@@ -5,7 +5,7 @@ import random
 import shutil
 import time
 from abc import ABC
-from typing import Dict, Any
+from typing import Dict, Any, List
 from urllib.parse import urlparse
 
 import pandas as pd
@@ -193,7 +193,7 @@ class Scraper(ABC):
         lg.debug("New url: %s" % new_url)
         lg.info("Succesfully clicked next button!")
 
-    def scrape_page(self):
+    def scrape_page(self) -> Dict[str, List[str]]:
         """
         Scrapes the current page
 
@@ -241,7 +241,7 @@ class Scraper(ABC):
             lg.debug("Copying data to backup: %s" % new_path)
             shutil.copyfile(self.scrape_data_path, new_path)
 
-    def clean_data(self, df: pd.DataFrame):
+    def clean_data(self, df: pd.DataFrame) -> pd.DataFrame:
         """
         Cleans the data by converting price, nr_rooms and size_m2 to numeric values
 
@@ -256,7 +256,7 @@ class Scraper(ABC):
         df['size_m2'] = pd.to_numeric(df['size_m2'], errors='coerce')
         return df
 
-    def enrich_data(self, df: pd.DataFrame):
+    def enrich_data(self, df: pd.DataFrame) -> pd.DataFrame:
         """
         Enriches the data by adding some extra columns (e.g. distance to central station)
 
